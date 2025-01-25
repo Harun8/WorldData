@@ -19,9 +19,17 @@ public class CountryService {
     public CountryService(CountryRepository countryRepository) {
         this.countryRepository = countryRepository;
     }
-    public List<Country> getPopulation(String country) {
+    public List<Country> getCountry(String country) {
         return countryRepository.findByCountry(country); // Use findById and Long instead of getById
     }
 
 
+    public List<String> getAllCountries() {
+        return countryRepository.getUniqueCountries();
+    }
+
+    public List<Country> getPopulations(int pageSize, int page) {
+        int offset = (page - 1) * pageSize; // Calculate offset
+        return countryRepository.getPopulation(pageSize,offset);
+    }
 }

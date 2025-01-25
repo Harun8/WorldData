@@ -21,11 +21,26 @@ public class CountryController {
     }
 
 
-    @GetMapping
+    @GetMapping("/country")
     public List<Country> getCountryPopulation(@RequestParam String country){
-        System.out.println("Received country parameter: " + country); // Debug log
 
-        return countryService.getPopulation(country);
+        return countryService.getCountry(country);
 
     }
+
+    @GetMapping("/population")
+    public List<Country> getPopulations(@RequestParam(defaultValue = "10") int perPage,  @RequestParam(defaultValue = "1") int page){
+
+        return countryService.getPopulations(perPage, page);
+
+    }
+
+
+
+//    @GetMapping
+//    public List<String> getCountries(){
+//
+//        return countryService.getAllCountries();
+//
+//    }
 }
