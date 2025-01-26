@@ -1,16 +1,14 @@
 package com.example.WorldData;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/country")
 public class CountryController {
+
 
 
     private final CountryService countryService;
@@ -27,9 +25,10 @@ public class CountryController {
         return countryService.getCountry(country);
 
     }
+    @CrossOrigin(origins = "http://localhost:5173")
 
     @GetMapping("/population")
-    public List<Country> getPopulations(@RequestParam(defaultValue = "10") int perPage,  @RequestParam(defaultValue = "1") int page){
+    public List<Country> getPopulations(@RequestParam(defaultValue = "65") int perPage,  @RequestParam(defaultValue = "1") int page){
 
         return countryService.getPopulations(perPage, page);
 
